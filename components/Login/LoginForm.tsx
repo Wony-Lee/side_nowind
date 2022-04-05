@@ -1,4 +1,5 @@
 import React, { FormEvent, useCallback, useState } from "react";
+import Link from "next/link";
 import styled from "@emotion/styled";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
@@ -7,22 +8,37 @@ import useInputs from "../../hooks/useInputs";
 import { SET_USER_LOGIN } from "../../reducers/loginReducer";
 
 const Form = styled.form`
-  border: 1px solid gold;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 10%;
 `;
 
 const InputBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid red;
+  width: 50%;
+  margin-bottom: 20px;
   & label {
-    border: 1px solid red;
-    margin: 10px;
+    //margin: 10px;
+    margin-bottom: 10px;
+    font-weight: bold;
   }
 `;
 
 const Input = styled.input`
-  //border: 0;
+  width: 200px;
+  height: 40px;
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 0;
+  border-bottom: 1px solid #ddd;
+  //outline: none;
+  box-sizing: border-box;
+  //border-radius: 8px;
+  box-shadow: 0px 0px 20px 2px rgba(155, 155, 155, 0.5);
 `;
 
 const ButtonBox = styled.div`
@@ -33,10 +49,14 @@ const Button = styled.button<{ isConfirm: boolean }>`
   width: 120px;
   height: 35px;
   border-radius: 8px;
-  margin: 5px;
+  margin: 15px;
   border: 0px;
-  background-color: ${({ isConfirm }) => (isConfirm ? "midnightblue" : "red")};
+  background-color: #0067a5;
+
   color: white;
+  &:hover {
+    background-color: ${({ isConfirm }) => (isConfirm ? "#ffb2ff" : "#66bb6a")};
+  }
 `;
 
 interface IuseInputs {
@@ -73,6 +93,10 @@ const LoginForm: React.FC = () => {
     [userId, password]
   );
 
+  const handleSignUpLocation = useCallback(() => {
+    router.push("/signup");
+  }, []);
+
   return (
     <div>
       <Form onSubmit={handleOnSubmit}>
@@ -96,7 +120,9 @@ const LoginForm: React.FC = () => {
         </InputBox>
         <ButtonBox>
           <Button isConfirm={true}>로그인</Button>
-          <Button isConfirm={false}>뒤로가기</Button>
+          <Button isConfirm={false} onClick={handleSignUpLocation}>
+            회원가입
+          </Button>
         </ButtonBox>
       </Form>
     </div>

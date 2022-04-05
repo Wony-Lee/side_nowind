@@ -49,7 +49,7 @@ export type UserInfoAction =
   | ReturnType<typeof setUserLogin>
   | ReturnType<typeof setUserLogout>;
 
-const reducer = (state: IUserState = initialState, action: UserInfoAction) => {
+const reducer = (state = initialState, action: UserInfoAction) => {
   switch (action.type) {
     case SET_USER_INFO:
       return {

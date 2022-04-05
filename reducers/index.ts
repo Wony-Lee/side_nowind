@@ -2,6 +2,7 @@ import { AnyAction, CombinedState, combineReducers } from "redux";
 import { HYDRATE } from "next-redux-wrapper";
 
 import login, { IUserState } from "./loginReducer";
+import signup, { ISignupState } from "./signupReducer";
 
 const rootReducer = (
   state: IState | undefined,
@@ -13,6 +14,7 @@ const rootReducer = (
     default: {
       const combineReducer = combineReducers({
         login,
+        signup,
       });
       return combineReducer(state, action);
     }
@@ -24,4 +26,5 @@ export default rootReducer;
 
 interface IState {
   login: IUserState;
+  signup: ISignupState;
 }

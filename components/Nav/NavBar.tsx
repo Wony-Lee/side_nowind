@@ -6,7 +6,7 @@ const List = styled.ul`
   display: flex;
   width: 100%;
   height: 50px;
-  background-color: midnightblue;
+  background-color: #0067a5;
 `;
 
 interface Props {}
