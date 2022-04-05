@@ -1,5 +1,10 @@
-import React from "react";
+import React, { FormEvent, useCallback, useState } from "react";
 import styled from "@emotion/styled";
+import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from "next/router";
+import { RootState } from "../../reducers";
+import useInputs from "../../hooks/useInputs";
+import { SET_USER_LOGIN } from "../../reducers/loginReducer";
 
 const Form = styled.form`
   border: 1px solid gold;
@@ -34,16 +39,60 @@ const Button = styled.button<{ isConfirm: boolean }>`
   color: white;
 `;
 
+interface IuseInputs {
+  id: string;
+  password: string;
+}
+
 const LoginForm: React.FC = () => {
+  const { user_info } = useSelector((state: RootState) => state.login);
+  const router = useRouter();
+  const dispatch = useDispatch();
+  const [loginInput, handleChangeInput, setLoginInput] = useInputs({
+    userId: "",
+    password: "",
+  });
+  const { userId, password } = loginInput;
+
+  const handleOnSubmit = useCallback(
+    (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      if (userId === "test" && password === "test123") {
+        dispatch({
+          type: SET_USER_LOGIN,
+          payload: loginInput,
+        });
+        router.push("/");
+      } else {
+        setLoginInput({
+          userId: "",
+          password: "",
+        });
+      }
+    },
+    [userId, password]
+  );
+
   return (
     <div>
-      로그인
-      <Form>
+      <Form onSubmit={handleOnSubmit}>
         <InputBox>
-          <label>ID</label>
-          <Input type={"text"} placeholder={"ID"} />
-          <label>PASSWORD</label>
-          <Input type={"password"} placeholder={"PASSWORD"} />
+          <label htmlFor={"userId"}>ID</label>
+          <Input
+            type={"text"}
+            placeholder={"ID"}
+            name={"userId"}
+            value={userId}
+            onChange={handleChangeInput}
+          />
+          <label htmlFor={"password"}>PASSWORD</label>
+          <Input
+            type={"password"}
+            placeholder={"PASSWORD"}
+            name={"password"}
+            value={password}
+            onChange={handleChangeInput}
+          />
         </InputBox>
         <ButtonBox>
           <Button isConfirm={true}>로그인</Button>
