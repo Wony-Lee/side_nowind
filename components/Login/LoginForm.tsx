@@ -1,4 +1,4 @@
-import React, { FormEvent, useCallback, useState } from "react";
+import React, { useCallback } from "react";
 import Link from "next/link";
 import styled from "@emotion/styled";
 import { useDispatch, useSelector } from "react-redux";

@@ -92,4 +92,4 @@ const TextForm: React.FC = () => {
   );
 };
 
-export default TextForm;
+export default React.memo(TextForm);

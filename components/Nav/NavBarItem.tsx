@@ -38,6 +38,7 @@ const Item = styled.li<{ size: number }>`
 const NavBarItem: React.FC<Props> = ({ name, size }) => {
   const router = useRouter();
   const dispatch = useDispatch();
+
   const { isLoggedIn } = useSelector((state: RootState) => state.login);
   const handleLocation = useCallback(() => {
     if (name === "홈") router.push("/");
@@ -50,6 +51,7 @@ const NavBarItem: React.FC<Props> = ({ name, size }) => {
       type: SET_USER_LOGOUT,
     });
   }, [isLoggedIn, name]);
+
   return (
     <Item size={size} onClick={handleLocation}>
       {isLoggedIn && name === "로그인" ? (

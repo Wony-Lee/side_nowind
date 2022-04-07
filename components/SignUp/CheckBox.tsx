@@ -69,4 +69,4 @@ const CheckBox: React.FC<Props> = ({ text }) => {
   );
 };
 
-export default CheckBox;
+export default React.memo(CheckBox);
