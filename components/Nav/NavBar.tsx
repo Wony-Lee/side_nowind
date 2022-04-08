@@ -26,7 +26,7 @@ const NavBar: React.FC = () => {
       name: "애인등록",
     },
     {
-      id: 4,
+      id: 5,
       name: "로그인",
     },
   ];

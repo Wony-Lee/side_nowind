@@ -33,7 +33,7 @@ const AccessForm: React.FC = () => {
         disabled={!isAccessChecked}
         handler={handleNext}
         text={"다음으로"}
-      ></Button>
+      />
     </Layout>
   );
 };

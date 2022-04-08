@@ -55,7 +55,18 @@ const NavBarItem: React.FC<Props> = ({ name, size }) => {
   return (
     <Item size={size} onClick={handleLocation}>
       {isLoggedIn && name === "로그인" ? (
-        <p onClick={handleLogout}>로그아웃</p>
+        <p
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            width: "100%",
+            height: "100%",
+          }}
+          onClick={handleLogout}
+        >
+          로그아웃
+        </p>
       ) : (
         name
       )}
